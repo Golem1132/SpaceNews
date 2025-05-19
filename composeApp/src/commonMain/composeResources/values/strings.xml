@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SpaceNews</string>
+    <string name="articles">Articles</string>
+    <string name="reports">Reports</string>
+    <string name="blogs">Blogs</string>
+    <string name="published_at">Published at (ascending)</string>
+    <string name="published_at_desc">Published at (descending)</string>
+    <string name="updated_at">Updated at (ascending)</string>
+    <string name="updated_at_desc">Updated at (descending)</string>
+</resources>
