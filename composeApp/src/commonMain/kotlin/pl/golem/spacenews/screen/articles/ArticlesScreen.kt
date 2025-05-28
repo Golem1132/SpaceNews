@@ -47,6 +47,7 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.viewmodel.koinViewModel
 import pl.golem.spacenews.helpers.timestamp_24h
 import pl.golem.spacenews.model.Ordering
 import pl.golem.spacenews.model.PublishDate
@@ -56,7 +57,7 @@ import pl.golem.spacenews.state.rememberFilterMenuState
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun ArticlesScreen() {
-    val viewModel = viewModel { ArticlesViewModel() }
+    val viewModel = koinViewModel<ArticlesViewModel>()
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
     val searchQuery = viewModel.searchQuery.collectAsState()
@@ -124,31 +125,7 @@ fun ArticlesScreen() {
             )
         },
         scaffoldState = scaffoldState,
-        drawerContent = {
-            Text(
-                text = if (filterPeriod.value.from != null) {
-                    "From ${
-                        timestamp_24h.format(
-                            filterPeriod.value.from!!
-                        )
-                    }"
-                } else {
-                    ""
-                }
-            )
-
-            Text(
-                text = if (filterPeriod.value.to != null) {
-                    "To ${
-                        timestamp_24h.format(
-                            filterPeriod.value.to!!
-                        )
-                    }"
-                } else {
-                    ""
-                }
-            )
-        },
+        drawerContent = {},
         modifier = Modifier.systemBarsPadding()
     ) {
         if (filterMenuState.expanded) {
@@ -254,9 +231,9 @@ fun ArticlesScreen() {
                         Row(
                             modifier = Modifier.fillMaxWidth().padding(5.dp),
                             horizontalArrangement =
-                            if (filterSort.value != null || filterPeriod.value.to != null || filterPeriod.value.from != null)
-                                Arrangement.SpaceBetween
-                            else Arrangement.End
+                                if (filterSort.value != null || filterPeriod.value.to != null || filterPeriod.value.from != null)
+                                    Arrangement.SpaceBetween
+                                else Arrangement.End
                         ) {
                             if (filterSort.value != null || filterPeriod.value.to != null || filterPeriod.value.from != null) {
                                 Button(

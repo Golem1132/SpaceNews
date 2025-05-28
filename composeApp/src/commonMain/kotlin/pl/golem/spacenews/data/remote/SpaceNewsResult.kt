@@ -1,4 +1,4 @@
-package pl.golem.spacenews.data
+package pl.golem.spacenews.data.remote
 
 import kotlinx.serialization.Serializable
 

@@ -8,8 +8,8 @@ import io.ktor.client.request.get
 import io.ktor.http.URLProtocol
 import io.ktor.http.path
 import kotlinx.io.IOException
-import pl.golem.spacenews.data.Info
-import pl.golem.spacenews.data.SpaceNewsResult
+import pl.golem.spacenews.data.remote.Info
+import pl.golem.spacenews.data.remote.SpaceNewsResult
 
 class ArticlesService(private val client: HttpClient) {
 

@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
     alias(libs.plugins.kotlinxSerialization)
+    alias(libs.plugins.sqldelight)
 }
 
 kotlin {
@@ -36,6 +37,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.kotlinx.coroutines.android)
+            implementation(libs.sqldelight.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -57,9 +59,17 @@ kotlin {
             implementation(libs.compose.material3)
             implementation(libs.compose.viewmodel)
             implementation(libs.kotlinx.datetime)
+            implementation(libs.paging3)
+            implementation(libs.koin.core)
+            implementation(libs.koin.android)
+            implementation(libs.koin.compose)
+            implementation(libs.koin.viewmodel)
+            implementation(libs.sqldelight.coroutines)
+          //  implementation(libs.sqldelight.paging)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.sqldelight.native)
         }
     }
 }
@@ -93,5 +103,13 @@ android {
 
 dependencies {
     debugImplementation(compose.uiTooling)
+}
+
+sqldelight {
+    databases {
+        create("SpaceNewsDatabase") {
+            packageName.set("pl.golem.spacenews.sqldelight")
+        }
+    }
 }
 

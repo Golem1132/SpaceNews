@@ -9,7 +9,17 @@ import pl.golem.spacenews.model.Ordering
 import pl.golem.spacenews.model.PublishDate
 
 
-class ArticlesViewModel(): ViewModel() {
+class ArticlesViewModel(
+    private val repository: ArticlesRepository
+): ViewModel() {
+
+    init {
+        viewModelScope.launch {
+
+//            repository.fetch()
+            println(repository.getArticles())
+        }
+    }
 
     private val _searchQuery = MutableStateFlow("")
     val searchQuery = _searchQuery.asStateFlow()

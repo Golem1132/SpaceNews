@@ -1,0 +1,27 @@
+import kotlin.Boolean;
+import kotlin.collections.List;
+import pl.golem.spacenews.data.remote.Author;
+import pl.golem.spacenews.data.remote.Event;
+import pl.golem.spacenews.data.remote.Launch;
+
+CREATE TABLE Result (
+id INTEGER PRIMARY KEY AUTOINCREMENT,
+title TEXT,
+authors TEXT AS List<Author>,
+url TEXT,
+imageUrl TEXT,
+newsSite TEXT,
+summary TEXT,
+publishedAt TEXT,
+updatedAt TEXT,
+featured INTEGER AS Boolean,
+launches TEXT AS List<Launch>,
+events TEXT AS List<Event>
+);
+
+insertResult:
+INSERT INTO Result (id, title, authors, url, imageUrl, newsSite, summary, publishedAt, updatedAt, featured, launches, events)
+VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?,?,?);
+
+getAll:
+SELECT * FROM Result;
