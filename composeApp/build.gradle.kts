@@ -1,5 +1,3 @@
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
@@ -13,7 +11,6 @@ plugins {
 
 kotlin {
     androidTarget {
-        @OptIn(ExperimentalKotlinGradlePluginApi::class)
         compilerOptions {
             jvmTarget.set(JvmTarget.JVM_11)
         }
@@ -35,9 +32,10 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
-            implementation(libs.ktor.client.okhttp)
+            implementation(libs.ktor.client.android)
             implementation(libs.kotlinx.coroutines.android)
             implementation(libs.sqldelight.android)
+            implementation(libs.koin.android)
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -54,6 +52,7 @@ kotlin {
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.ktor.serialization)
             implementation(libs.ktor.contentnegotiation)
+            implementation(libs.ktor.encoding)
             implementation(libs.compose.backhandler)
             implementation(libs.compose.icons)
             implementation(libs.compose.material3)
@@ -61,11 +60,12 @@ kotlin {
             implementation(libs.kotlinx.datetime)
             implementation(libs.paging3)
             implementation(libs.koin.core)
-            implementation(libs.koin.android)
             implementation(libs.koin.compose)
             implementation(libs.koin.viewmodel)
             implementation(libs.sqldelight.coroutines)
-          //  implementation(libs.sqldelight.paging)
+            implementation(libs.sqldelight.paging.extension)
+            implementation(libs.coil.compose)
+            implementation(libs.coil.ktor)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)

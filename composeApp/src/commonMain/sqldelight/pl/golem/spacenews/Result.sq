@@ -16,12 +16,34 @@ publishedAt TEXT,
 updatedAt TEXT,
 featured INTEGER AS Boolean,
 launches TEXT AS List<Launch>,
-events TEXT AS List<Event>
+events TEXT AS List<Event>,
+offset INTEGER
 );
 
 insertResult:
-INSERT INTO Result (id, title, authors, url, imageUrl, newsSite, summary, publishedAt, updatedAt, featured, launches, events)
-VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?,?,?);
+INSERT OR REPLACE INTO Result (id, title, authors, url, imageUrl, newsSite, summary, publishedAt, updatedAt, featured, launches, events, offset)
+VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?,?,?, ?);
+
+getAllOffset:
+SELECT id,
+       title,
+       authors,
+       url,
+       imageUrl,
+       newsSite,
+       summary,
+       publishedAt,
+       updatedAt,
+       featured,
+       launches,
+       events,
+       offset FROM Result WHERE offset = :offset;
 
 getAll:
 SELECT * FROM Result;
+
+countResult:
+SELECT COUNT(id) FROM Result;
+
+clearTable:
+DELETE FROM Result;

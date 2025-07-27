@@ -29,7 +29,14 @@ val sharedModule = module {
             authorsAdapter = authorsAdapter,
             launchesAdapter = launchesAdapter,
             eventsAdapter = eventsAdapter
-        )).resultQueries
+        ))
+    }
+    single {
+        get<SpaceNewsDatabase>().resultQueries
+    }
+
+    single {
+        get<SpaceNewsDatabase>().remoteKeysQueries
     }
 
     single {
@@ -43,12 +50,13 @@ val sharedModule = module {
     single {
         ArticlesRepository(
             get(),
+            get(),
             get()
         )
     }
 
     viewModel {
-        ArticlesViewModel(get())
+        ArticlesViewModel(get(), get())
     }
 }
 

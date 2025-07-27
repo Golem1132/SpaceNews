@@ -1,6 +1,8 @@
 package pl.golem.spacenews.api
 
 import io.ktor.client.HttpClient
+import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.compression.ContentEncoding
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 
@@ -9,6 +11,13 @@ class KtorClient {
         expectSuccess = true
         install(ContentNegotiation) {
             json()
+        }
+        install(HttpTimeout) {
+            requestTimeoutMillis = 30_000L
+        }
+        install(ContentEncoding) {
+            gzip(1f)
+            deflate(1f)
         }
     }
 

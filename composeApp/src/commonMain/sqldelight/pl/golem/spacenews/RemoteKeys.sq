@@ -1,0 +1,17 @@
+CREATE TABLE RemoteKeys (
+id INTEGER PRIMARY KEY NOT NULL,
+prevKey INTEGER,
+nextKey INTEGER
+);
+
+getRemoteKey:
+SELECT * FROM RemoteKeys WHERE id = :id;
+
+getAllKeys:
+SELECT * FROM RemoteKeys;
+
+addNewKeys:
+INSERT OR REPLACE INTO RemoteKeys VALUES ?;
+
+deleteKeys:
+DELETE FROM RemoteKeys;

@@ -4,6 +4,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.plugins.ClientRequestException
 import io.ktor.client.plugins.ServerResponseException
+import io.ktor.client.plugins.compression.compress
 import io.ktor.client.request.get
 import io.ktor.http.URLProtocol
 import io.ktor.http.path
@@ -14,13 +15,16 @@ import pl.golem.spacenews.data.remote.SpaceNewsResult
 class ArticlesService(private val client: HttpClient) {
 
     suspend fun getArticles(
+        offset: Int = 0,
         publishedFrom: String? = null,
         publishedTo: String? = null,
         search: String = "",
         ordering: String? = null
     ): Request<Int, String, SpaceNewsResult> {
         return try {
+
             Request.Success(client.get {
+                compress("gzip")
                 url {
                     protocol = URLProtocol.HTTPS
                     host = "api.spaceflightnewsapi.net"
@@ -34,7 +38,7 @@ class ArticlesService(private val client: HttpClient) {
                             append("published_at_gte", publishedFrom)
                         if (publishedTo != null)
                             append("published_at_lte", publishedTo)
-
+                        append("offset", offset.toString())
                     }
                 }
             }.body())

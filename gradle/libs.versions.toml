@@ -4,9 +4,9 @@ android-compileSdk = "35"
 android-minSdk = "24"
 android-targetSdk = "35"
 androidx-activityCompose = "1.10.1"
-androidx-appcompat = "1.7.0"
+androidx-appcompat = "1.7.1"
 androidx-constraintlayout = "2.2.1"
-androidx-core-ktx = "1.15.0"
+androidx-core-ktx = "1.16.0"
 androidx-espresso-core = "3.6.1"
 androidx-lifecycle = "2.8.4"
 androidx-material = "1.12.0"
@@ -18,11 +18,12 @@ kotlin = "2.1.10"
 androidx-navigation = "2.8.0-alpha10"
 kotlinx-serialization-json = "1.8.1"
 ktor = "3.1.2"
-coroutines = "1.9.0"
+coroutines = "1.10.2"
 materials = "1.7.3"
 viewmodel = "2.8.4"
 pagingVersion = "3.3.6"
 sqldelightVersion = "2.1.0"
+coil = "3.2.0"
 
 [libraries]
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
@@ -45,9 +46,10 @@ androidx-navigation = { group = "org.jetbrains.androidx.navigation", name = "nav
 kotlinx-serialization = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization-json" }
 kotlinx-datetime = { group = "org.jetbrains.kotlinx", name = "kotlinx-datetime", version = "0.6.2"}
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktor" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 ktor-serialization = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
+ktor-encoding = { module = "io.ktor:ktor-client-encoding", version.ref = "ktor"}
 ktor-contentnegotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 compose-backhandler = { module = "org.jetbrains.compose.ui:ui-backhandler", version.ref = "compose-multiplatform" }
 compose-icons = { module = "org.jetbrains.compose.material:material-icons-core", version.ref = "materials"}
@@ -56,7 +58,9 @@ paging3 = { module = "androidx.paging:paging-common", version.ref = "pagingVersi
 sqldelight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqldelightVersion" }
 sqldelight-native = { module = "app.cash.sqldelight:native-driver", version.ref = "sqldelightVersion" }
 sqldelight-coroutines = { module = "app.cash.sqldelight:coroutines-extensions", version.ref = "sqldelightVersion" }
-sqldelight-paging = { module = "app.cash.sqldelight:androidx-paging3-extensions", version.ref = "sqldelightVersion" }
+sqldelight-paging-extension = { module = "app.cash.sqldelight:androidx-paging3-extensions", version.ref = "sqldelightVersion" }
+coil-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil"}
+coil-ktor = { module = "io.coil-kt.coil3:coil-network-ktor3", version.ref = "coil"}
 
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
