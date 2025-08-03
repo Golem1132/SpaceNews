@@ -53,6 +53,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import coil3.compose.AsyncImage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -65,12 +66,14 @@ import org.koin.compose.viewmodel.koinViewModel
 import pl.golem.spacenews.component.ListItem
 import pl.golem.spacenews.model.Ordering
 import pl.golem.spacenews.model.PublishDate
+import pl.golem.spacenews.navigation.WebView
+
 import pl.golem.spacenews.state.FilterType
 import pl.golem.spacenews.state.rememberFilterMenuState
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
-fun ArticlesScreen() {
+fun ArticlesScreen(navController: NavController) {
     val viewModel = koinViewModel<ArticlesViewModel>()
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
@@ -289,7 +292,6 @@ fun ArticlesScreen() {
         PullToRefreshBox(
             screenState.value == ArticleScreenStates.REFRESH,
             onRefresh = {
-                println("SHOULD REFRESH")
                 scope.launch(Dispatchers.IO) {
                     viewModel.tryFetchingData(ArticleScreenStates.REFRESH)
                 }
@@ -306,7 +308,7 @@ fun ArticlesScreen() {
                                 )
                                 .combinedClickable(
                                     onClick = {
-
+                                        navController.navigate(WebView(result.url ?: ""))
                                     },
                                     onLongClick = {
 
