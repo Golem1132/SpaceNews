@@ -3,7 +3,7 @@ package pl.golem.spacenews.navigation
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class WebView(
+data class WebScreen(
     val url: String
 )
 

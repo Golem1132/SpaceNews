@@ -9,12 +9,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -51,10 +49,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import coil3.compose.AsyncImage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.launch
@@ -66,7 +62,7 @@ import org.koin.compose.viewmodel.koinViewModel
 import pl.golem.spacenews.component.ListItem
 import pl.golem.spacenews.model.Ordering
 import pl.golem.spacenews.model.PublishDate
-import pl.golem.spacenews.navigation.WebView
+import pl.golem.spacenews.navigation.WebScreen
 
 import pl.golem.spacenews.state.FilterType
 import pl.golem.spacenews.state.rememberFilterMenuState
@@ -308,7 +304,7 @@ fun ArticlesScreen(navController: NavController) {
                                 )
                                 .combinedClickable(
                                     onClick = {
-                                        navController.navigate(WebView(result.url ?: ""))
+                                        navController.navigate(WebScreen(result.url ?: ""))
                                     },
                                     onLongClick = {
 

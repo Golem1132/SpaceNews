@@ -1,14 +1,12 @@
 package pl.golem.spacenews.navigation
 
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
-import pl.golem.spacenews.component.WebView
 import pl.golem.spacenews.screen.articles.ArticlesScreen
+import pl.golem.spacenews.screen.web.WebScreen
 
 
 @Composable
@@ -20,9 +18,9 @@ fun SpaceNewsNavigation() {
             ArticlesScreen(navController)
         }
 
-        composable<WebView> { backstack ->
-            val route: WebView = backstack.toRoute()
-            WebView(Modifier.fillMaxSize(), route.url)
+        composable<WebScreen> { backstack ->
+            val route: WebScreen = backstack.toRoute()
+            WebScreen(navController, route.url)
         }
     }
 }
