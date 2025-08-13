@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import pl.golem.spacenews.screen.articles.ArticlesScreen
+import pl.golem.spacenews.screen.main.MainScreen
 import pl.golem.spacenews.screen.web.WebScreen
 
 
@@ -13,9 +14,10 @@ import pl.golem.spacenews.screen.web.WebScreen
 fun SpaceNewsNavigation() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = Articles) {
-        composable<Articles> {
-            ArticlesScreen(navController)
+    NavHost(navController = navController, startDestination = Main) {
+
+        composable<Main> {
+            MainScreen(navController)
         }
 
         composable<WebScreen> { backstack ->
