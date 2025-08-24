@@ -22,4 +22,6 @@ class KtorClient {
     }
 
     val articlesService = ArticlesService(client)
+    val reportsService = ReportsService(client)
+    val blogsService = BlogsService(client)
 }

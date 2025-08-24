@@ -3,18 +3,18 @@ package pl.golem.spacenews.screen.main
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Tab
-import androidx.compose.material.Text
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.PrimaryTabRow
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Tab
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.backhandler.BackHandler
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,8 +23,10 @@ import pl.golem.spacenews.navigation.Articles
 import pl.golem.spacenews.navigation.Blogs
 import pl.golem.spacenews.navigation.Reports
 import pl.golem.spacenews.screen.articles.ArticlesScreen
+import pl.golem.spacenews.screen.blogs.BlogsScreen
+import pl.golem.spacenews.screen.reports.ReportsScreen
 
-@OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun MainScreen(mainNavigation: NavController) {
     val internalNav = rememberNavController()
@@ -67,13 +69,17 @@ fun MainScreen(mainNavigation: NavController) {
                     ArticlesScreen(Modifier.fillMaxWidth().weight(1f), mainNavigation)
                 }
                 composable<Blogs> {
-
+                    BlogsScreen(Modifier.fillMaxWidth().weight(1f), mainNavigation)
                 }
 
                 composable<Reports> {
-
+                    ReportsScreen(Modifier.fillMaxWidth().weight(1f), mainNavigation)
                 }
             }
         }
+    }
+
+    BackHandler {
+        println("Back pressed")
     }
 }

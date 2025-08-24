@@ -9,12 +9,10 @@ import io.ktor.client.request.get
 import io.ktor.http.URLProtocol
 import io.ktor.http.path
 import kotlinx.io.IOException
-import pl.golem.spacenews.data.remote.Info
 import pl.golem.spacenews.data.remote.SpaceNewsResult
 
-class ArticlesService(private val client: HttpClient) {
-
-    suspend fun getArticles(
+class ReportsService(private val client: HttpClient)  {
+    suspend fun getReports(
         offset: Int = 0,
         publishedFrom: String? = null,
         publishedTo: String? = null,
@@ -28,7 +26,7 @@ class ArticlesService(private val client: HttpClient) {
                 url {
                     protocol = URLProtocol.HTTPS
                     host = "api.spaceflightnewsapi.net"
-                    path("v4", "articles")
+                    path("v4", "reports")
                     parameters.apply {
                         if (ordering != null)
                             append("ordering", ordering)

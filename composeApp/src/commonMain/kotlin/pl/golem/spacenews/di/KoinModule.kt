@@ -12,8 +12,13 @@ import pl.golem.spacenews.data.local.DatabaseDriver
 import pl.golem.spacenews.dbadapters.authorsAdapter
 import pl.golem.spacenews.dbadapters.eventsAdapter
 import pl.golem.spacenews.dbadapters.launchesAdapter
+import pl.golem.spacenews.navigation.Blogs
 import pl.golem.spacenews.screen.articles.ArticlesRepository
 import pl.golem.spacenews.screen.articles.ArticlesViewModel
+import pl.golem.spacenews.screen.blogs.BlogsRepository
+import pl.golem.spacenews.screen.blogs.BlogsViewModel
+import pl.golem.spacenews.screen.reports.ReportsRepository
+import pl.golem.spacenews.screen.reports.ReportsViewModel
 import pl.golem.spacenews.sqldelight.SpaceNewsDatabase
 
 
@@ -25,11 +30,13 @@ val sharedModule = module {
     }
 
     single {
-        SpaceNewsDatabase(get(), Result.Adapter(
-            authorsAdapter = authorsAdapter,
-            launchesAdapter = launchesAdapter,
-            eventsAdapter = eventsAdapter
-        ))
+        SpaceNewsDatabase(
+            get(), Result.Adapter(
+                authorsAdapter = authorsAdapter,
+                launchesAdapter = launchesAdapter,
+                eventsAdapter = eventsAdapter
+            )
+        )
     }
     single {
         get<SpaceNewsDatabase>().resultQueries
@@ -48,6 +55,14 @@ val sharedModule = module {
     }
 
     single {
+        get<KtorClient>().blogsService
+    }
+
+    single {
+        get<KtorClient>().reportsService
+    }
+
+    single {
         ArticlesRepository(
             get(),
             get(),
@@ -55,8 +70,32 @@ val sharedModule = module {
         )
     }
 
+    single {
+        BlogsRepository(
+            get(),
+            get(),
+            get()
+        )
+    }
+
+    single {
+        ReportsRepository(
+            get(),
+            get(),
+            get()
+        )
+    }
+
     viewModel {
-        ArticlesViewModel(get(), get())
+        ArticlesViewModel(get())
+    }
+
+    viewModel {
+        BlogsViewModel(get())
+    }
+
+    viewModel {
+        ReportsViewModel(get())
     }
 }
 

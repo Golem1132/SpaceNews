@@ -1,4 +1,4 @@
-package pl.golem.spacenews.screen.articles
+package pl.golem.spacenews.screen.blogs
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -6,28 +6,21 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import pl.golem.spacenews.api.ArticlesService
 import pl.golem.spacenews.api.Request
 import pl.golem.spacenews.data.remote.Result
 import pl.golem.spacenews.model.Ordering
 import pl.golem.spacenews.model.PublishDate
-
-enum class ArticleScreenStates {
-    INIT,
-    LOADING_PAGE,
-    REFRESH,
-    IDLE
-}
+import pl.golem.spacenews.screen.articles.ArticleScreenStates
 
 
-class ArticlesViewModel(
-    private val repository: ArticlesRepository
+class BlogsViewModel(
+    private val repository: BlogsRepository,
 ) : ViewModel() {
 
     private val maxPageSize = 30
     private var currentOffset = 0
 
-    private val _screenState = MutableStateFlow<ArticleScreenStates>(ArticleScreenStates.INIT)
+    private val _screenState = MutableStateFlow(ArticleScreenStates.INIT)
     val screenState = _screenState.asStateFlow()
     private val _endOfPaging = MutableStateFlow(false)
     val endOfPaging = _endOfPaging.asStateFlow()
